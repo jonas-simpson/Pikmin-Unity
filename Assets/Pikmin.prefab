@@ -79,16 +79,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.041677475
-        inSlope: 0.66164845
-        outSlope: 0.66164845
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.4350649
-      - serializedVersion: 3
-        time: 0.49999696
-        value: 0.18333638
+        value: 0.2166692
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -98,19 +89,19 @@ TrailRenderer:
       - serializedVersion: 3
         time: 1
         value: 0.03333077
-        inSlope: -0.6034485
-        outSlope: -0.6034485
+        inSlope: -0.41283417
+        outSlope: -0.41283417
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.4603174
+        inWeight: 0.1857143
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -126,7 +117,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 31997
+      atime1: 65535
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -135,7 +126,7 @@ TrailRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 3
+      m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -155,14 +146,15 @@ GameObject:
   m_Component:
   - component: {fileID: 5160130689460002331}
   - component: {fileID: 5160130689460002330}
-  - component: {fileID: 5160130689460002329}
   - component: {fileID: 5160130689460002325}
+  - component: {fileID: 4853964469433089212}
   - component: {fileID: 5160130689460002328}
   - component: {fileID: -1977370190102540068}
   - component: {fileID: -2044396394225281586}
   - component: {fileID: -1662310995289809762}
   - component: {fileID: -453046390808888482}
   - component: {fileID: -3362885441931959101}
+  - component: {fileID: -8608804212342857487}
   m_Layer: 2
   m_Name: Pikmin
   m_TagString: Pikmin
@@ -202,36 +194,6 @@ MonoBehaviour:
   agent: {fileID: 0}
   currentTargetObject: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
---- !u!114 &5160130689460002329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5160130689460002324}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64b523611048ebb4aa8f9d1876be7388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  withPlayer: 0
-  held: 0
-  distFromPlayer: 0
-  maxDistFromPlayer: 0
-  order: 0
-  throwForceY: 1
-  throwDrag: 0
-  forceDampen: 18
-  follower: {fileID: 0}
-  rb: {fileID: 0}
-  col: {fileID: 0}
-  myThrow: {fileID: 0}
-  grav: {fileID: 0}
-  player: {fileID: 0}
-  manager: {fileID: 0}
-  pointer: {fileID: 0}
-  state: 0
-  activity: 0
 --- !u!195 &5160130689460002325
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -254,6 +216,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!208 &4853964469433089212
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160130689460002324}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.25, y: 0.5, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!54 &5160130689460002328
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -300,13 +278,16 @@ MonoBehaviour:
   player: {fileID: 0}
   grav: {fileID: 0}
   machine: {fileID: 0}
+  obstacleSwitch: {fileID: 0}
   rb: {fileID: 0}
   col: {fileID: 0}
   captain: {fileID: 0}
   pointer: {fileID: 0}
   target: {fileID: 0}
   manager: {fileID: 0}
-  tasks: []
+  nearbyTasks: []
+  myTask: {fileID: 0}
+  nearestOpenTask: {fileID: 0}
   withPlayer: 0
   held: 0
   grounded: 0
@@ -366,6 +347,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-8608804212342857487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160130689460002324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf478aeab7a4cad419e72721d0471bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacle: {fileID: 0}
 --- !u!1 &5160130689590697713
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,16 @@ public class PikminHelper : MonoBehaviour
         pikmin.col.enabled = _state;
     }
 
+    public void SetOnlyRB(bool _state)
+    {
+        pikmin.rb.detectCollisions = _state;
+    }
+
+    public void SetKinematic(bool _state)
+    {
+        pikmin.rb.isKinematic = _state;
+    }
+
     public float UpdateDistance(Transform target, Transform me)
     {
 

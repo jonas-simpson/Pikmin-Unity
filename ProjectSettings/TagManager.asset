@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Carry Target
   - Task
+  - Goal
   layers:
   - Default
   - TransparentFX

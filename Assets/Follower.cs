@@ -11,7 +11,7 @@ public class Follower : MonoBehaviour
 
     public Vector3 target;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = FindObjectOfType<PlayerController>().gameObject;
         agent = GetComponent<NavMeshAgent>();
@@ -35,6 +35,7 @@ public class Follower : MonoBehaviour
     public void AgentState(bool state)
     {
         agent.enabled = state;
+        //Debug.Log("agent set to " + state.ToString());
     }
 
     public void Destination(GameObject targetObject)
